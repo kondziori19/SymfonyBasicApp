@@ -6,6 +6,7 @@ use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,10 @@ class CustomerType extends AbstractType
     {
         $builder->add('name');
         $builder->add('surname');
-        $builder->add('birth_date');
+        $builder->add('birth_date', DateType::class, [
+            'widget' => 'single_text',
+            'format' => 'yyyy-MM-dd',
+        ]);
 
         $builder->add('cars', CollectionType::class, [
             'entry_type' => CarType::class,

@@ -3,54 +3,16 @@
 {% block title %}Home{% endblock %}
 
 {% block javascripts %}
-    <script type='module'>
-        const addFormToCollection = (e) => {
-            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-
-            const item = document.createElement('div');
-
-            item.innerHTML = collectionHolder
-                .dataset
-                .prototype
-                .replace(
-                /__name__/g,
-                collectionHolder.dataset.index
-                );
-
-            collectionHolder.appendChild(item);
-
-            collectionHolder.dataset.index++;
-            addTagFormDeleteLink(item);
-        };
-
-        const addTagFormDeleteLink = (item) => {
-            const removeFormButton = document.createElement('button');
-            removeFormButton.innerText = 'Delete this car';
-
-            item.append(removeFormButton);
-
-            removeFormButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                item.remove();
-            });
-        }
-
-        document
-        .querySelectorAll('.add_item_link')
-        .forEach(btn => {
-            btn.addEventListener("click", addFormToCollection)
-        });
-    </script>
+    <script type='module' src='js/home.js'></script>
 {% endblock %}
 
 {% block body %}
 <style>
     .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-
 </style>
 
 <div class="wrapper">
-    <h1>Formularz dodawania nowego klienta</h1>
+    <h1>New Customer Form</h1>
 
     {{ form_start(form) }}
         {{ form_row(form.name) }}
